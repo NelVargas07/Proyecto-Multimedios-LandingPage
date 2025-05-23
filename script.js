@@ -115,3 +115,18 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
   };
 });
 
+const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
+
+const observer2 = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+    } else {
+      entry.target.classList.remove('active'); // Quita la clase cuando sale del viewport
+    }
+  });
+}, {
+  threshold: 0.1 // Puedes ajustar el umbral si lo deseas
+});
+
+animatedElements.forEach(el => observer2.observe(el));
