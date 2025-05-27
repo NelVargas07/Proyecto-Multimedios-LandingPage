@@ -97,7 +97,7 @@ document.getElementById("formulario").addEventListener("submit", async function 
 
   // Llamada al API
   try {
-    const response = await fetch("http://localhost:5121/api/Tarea", {
+    const response = await fetch("http://localhost:5121/api/Usuario", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
