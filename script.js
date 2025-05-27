@@ -95,7 +95,7 @@ document.getElementById("formulario").addEventListener("submit", async function 
     return;
   }
 
-  // Llamada al API
+  // Llamada 
   try {
     const response = await fetch("http://www.multime.somee.com/api/Usuario", {
       method: "POST",
