@@ -97,7 +97,7 @@ document.getElementById("formulario").addEventListener("submit", async function 
 
   // Llamada 
   try {
-    const response = await fetch("http://www.multime.somee.com/api/Usuario", {
+    const response = await fetch("https://www.multime.somee.com/api/Usuario", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
