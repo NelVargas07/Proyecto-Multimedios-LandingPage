@@ -60,11 +60,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Validación del formulario
-document.getElementById("formulario").addEventListener("submit", function (e) {
+// ...existing code...
+
+document.getElementById("formulario").addEventListener("submit", async function (e) {
   e.preventDefault(); // Previene el envío automático
   const nombreInput = document.getElementById("name");
   const correoInput = document.getElementById("email");
- const phoneInput = document.getElementById("phone");
+  const phoneInput = document.getElementById("phone");
 
   const nombre = nombreInput.value.trim();
   const correo = correoInput.value.trim();
@@ -89,10 +91,37 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
 
   if (errores.length > 0) {
     textoModal.innerHTML = errores.join("<br>");
-  } else {
-    textoModal.textContent = "Formulario enviado correctamente.";
-    // Aquí puedes hacer el envío real con fetch/AJAX si quieres
-    // this.submit();
+    modal.style.display = "flex";
+    return;
+  }
+
+  // Llamada al API
+  try {
+    const response = await fetch("http://localhost:5121/api/Tarea", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        id: 0,
+        nombre: nombre,
+        correo: correo,
+        telefono: phone
+      })
+    });
+
+    const result = await response.json();
+
+    if (result === true) {
+      textoModal.textContent = "Formulario enviado correctamente.";
+      nombreInput.value = "";
+      correoInput.value = "";
+      phoneInput.value = "";
+    } else {
+      textoModal.textContent = "Error al enviar el formulario.";
+    }
+  } catch (error) {
+    textoModal.textContent = "Error de conexión con el servidor.";
   }
 
   modal.style.display = "flex";
@@ -100,10 +129,6 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
   // Función para cerrar modal y limpiar campos
   function cerrarYLimpia() {
     modal.style.display = "none";
-    // Limpiar campos
-    nombreInput.value = "";
-    correoInput.value = "";
-    phoneInput.value = "";
   }
 
   cerrarModal.onclick = cerrarYLimpia;
@@ -114,6 +139,9 @@ document.getElementById("formulario").addEventListener("submit", function (e) {
     }
   };
 });
+
+// ...existing code...
+
 
 const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
 

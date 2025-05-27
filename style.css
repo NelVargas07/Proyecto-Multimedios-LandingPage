@@ -475,6 +475,20 @@ footer {
 
 /* Responsive */
 @media (max-width: 48rem) {  /* 768px */
+
+  body {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  header,
+  nav,
+  #navbar {
+    left: 0;
+    width: 100vw;
+    margin-left: 0;
+    box-sizing: border-box;
+  }
+
   .container {
     padding: 1rem;
   }
@@ -550,6 +564,20 @@ footer {
 }
 
 @media (max-width: 30rem) { /* 480px */
+
+  body {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  header,
+  nav,
+  #navbar {
+    left: 0;
+    width: 100vw;
+    margin-left: 0;
+    box-sizing: border-box;
+  }
+
   .container {
     padding: 0.5rem;
   }
